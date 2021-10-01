@@ -6,3 +6,7 @@
 Game done in Kivy for Linux and Mobile. Kivy is a free and open source Python framework for developing mobile apps and games with a natural user interface.
 
 <https://www.freecodecamp.org/news/use-the-kivy-python-library-to-create-games-and-mobile-apps>
+
+## How to Play
+
+Clone the repo. Change directories into src. Launch main.py to start the game.
