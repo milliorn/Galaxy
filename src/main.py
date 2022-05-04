@@ -1,3 +1,10 @@
+from kivy.uix.widget import Widget
+from kivy.properties import NumericProperty, Clock, ObjectProperty, StringProperty
+from kivy.graphics.vertex_instructions import Line, Quad, Triangle
+from kivy.graphics.context_instructions import Color
+from kivy.app import App
+from kivy.core.window import Window
+from kivy import platform
 from kivy.uix.relativelayout import RelativeLayout
 from kivy.lang import Builder
 from kivy.core.audio import SoundLoader
@@ -7,14 +14,6 @@ from kivy.config import Config
 
 Config.set('graphics', 'width', '900')
 Config.set('graphics', 'height', '400')
-
-from kivy import platform
-from kivy.core.window import Window
-from kivy.app import App
-from kivy.graphics.context_instructions import Color
-from kivy.graphics.vertex_instructions import Line, Quad, Triangle
-from kivy.properties import NumericProperty, Clock, ObjectProperty, StringProperty
-from kivy.uix.widget import Widget
 
 
 Builder.load_file("menu.kv")
@@ -79,7 +78,8 @@ class MainWidget(RelativeLayout):
         self.reset_game()
 
         if self.is_desktop():
-            self._keyboard = Window.request_keyboard(self.keyboard_closed, self)
+            self._keyboard = Window.request_keyboard(
+                self.keyboard_closed, self)
             self._keyboard.bind(on_key_down=self.on_keyboard_down)
             self._keyboard.bind(on_key_up=self.on_keyboard_up)
 
@@ -88,8 +88,10 @@ class MainWidget(RelativeLayout):
     def init_audio(self):
         self.sound_begin = SoundLoader.load("audio/begin.wav")
         self.sound_galaxy = SoundLoader.load("audio/galaxy.wav")
-        self.sound_gameover_impact = SoundLoader.load("audio/gameover_impact.wav")
-        self.sound_gameover_voice = SoundLoader.load("audio/gameover_voice.wav")
+        self.sound_gameover_impact = SoundLoader.load(
+            "audio/gameover_impact.wav")
+        self.sound_gameover_voice = SoundLoader.load(
+            "audio/gameover_voice.wav")
         self.sound_music1 = SoundLoader.load("audio/music1.wav")
         self.sound_restart = SoundLoader.load("audio/restart.wav")
 
@@ -233,8 +235,10 @@ class MainWidget(RelativeLayout):
         for id_tiles in range(0, self.NUMBER_TILES):
             tile = self.tiles[id_tiles]
             tile_coordinates = self.tiles_coordinates[id_tiles]
-            xmin, ymin = self.get_tile_coordinates(tile_coordinates[0], tile_coordinates[1])
-            xmax, ymax = self.get_tile_coordinates(tile_coordinates[0] + 1, tile_coordinates[1] + 1)
+            xmin, ymin = self.get_tile_coordinates(
+                tile_coordinates[0], tile_coordinates[1])
+            xmax, ymax = self.get_tile_coordinates(
+                tile_coordinates[0] + 1, tile_coordinates[1] + 1)
 
             x1, y1 = self.transform(xmin, ymin)
             x2, y2 = self.transform(xmin, ymax)
